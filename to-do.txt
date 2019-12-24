@@ -1,0 +1,20 @@
+To-do list for sudoko:
+
+*1. Verify we have a 9x9 table
+
+2. Check each row and col for unique 1-9 values
+	*-check for spaces: means we have an incomplete table
+	
+	-cols:
+		use a hashset to verify unique values
+			-simplify current hashset process into a single function that takes a string as input so we can use for both rows and cols checking
+	-rows:
+		-populate a 2d array use above hashset method
+		-we can use this 2d array for both rows and cols checking (simplification)
+
+3. Create a nonet of 3x3 grids
+
+4. Verify only one of each # in the nonet
+	-check for spaces?
+
+5. Check to see if the sum of each nonet(3x3grid) is equal to 45
