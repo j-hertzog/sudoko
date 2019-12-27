@@ -8,6 +8,7 @@ using namespace std;
 
 //prototypes
 bool checkTable(string n);
+bool checkRC(string n);
 
 int main(int argc, char* argv[])
 {
@@ -17,61 +18,14 @@ int main(int argc, char* argv[])
     cout << "Error: Please enter the name of the text file you want to validate" << endl;
     return 1;
   }
-  if(!checkTable(argv[1]))
+  else if(!checkTable(argv[1]))
   {
     cout << "Error: Incorrect grid format, please enter a 9x9 Sudoku grid" << endl;
     return 1;
   }
-
-
-  //we have a valid 9x9 grid, check for unique characters in rows and columns
-  ifstream mfile(argv[1]);
-  int row = 0;
-  int table[9][9];
-
-  while(!mfile.fail())
-  {
-    unordered_set<int> s;
-    string line;
-
-    getline(mfile, line);
-
-    //prevent bad input
-    if(mfile.fail())
-    {
-      break;
-    }
-
-    for(int i = 0; i < 9; i++)
-    {
-      if(line[i] == ' ')
-      {
-        cout << "Error: Incomplete list, please fill in any empty spaces." << endl;
-        return 1;
-      }
-      else
-      {
-        //use a hashset to make sure #'s are unique by rows 
-        if(s.find(line[i]) == s.end())
-        {
-          //insert unique items into the hashset and a 2-d array to check by rows
-          s.insert(line[i]);
-          table[row][i] =line[i] - 48; // -48 for correct ascii to int conversion
-          cout << line[i] << " ";
-        }
-        else
-        {
-          cout << "Table not correct: duplicate items in row " << row + 1 << endl;
-          return 0;
-        }
-      }
-    }
-    cout << endl;
-    row++;
-  }
   
-  //use the 2-d array we populated to check for unique columns
-  
+  //check for duplicates or spaces in rows and columns
+  checkRC(argv[1]);
 
   return 0;
 }
@@ -107,4 +61,63 @@ bool checkTable(string n)
     return true;
 }
 
+//verifies unique values in rows/columns
+bool checkRC(string n)
+{
+  ifstream mfile(n);
+  if(mfile.fail())
+    return false;
+
+  int row = 0;
+  int table[9][9];
+
+  while(!mfile.fail())
+  {
+    string line;
+    getline(mfile, line);
+
+    //prevent bad input
+    if(mfile.fail())
+      break;
+
+    for(int i = 0; i < 9; i++)
+    {
+      //checks for spaces while populating 2d array
+      if(line[i] == ' ')
+      {
+        cout << "Error: Incomplete list, please fill in any empty spaces." << endl;
+        return false;
+      }
+      else
+      {
+          table[row][i] = line[i] - 48; // -48 for correct ascii to int conversion
+          cout << line[i] << " ";
+      }
+    }
+    cout << endl;
+    row++;
+  }
+  for(int i = 0; i < 9; i++)
+  {
+    unordered_set<int> r;
+    unordered_set<int> c;
+      
+    for(int j = 0; j < 9; j++)
+    {
+      //checking for unique values using 2 unordered sets
+      //one for each orientation (row-wise) and (column-wise)
+      if(r.find(table[i][j]) == r.end() && c.find(table[j][i]) == c.end())
+      {
+        r.insert(table[i][j]);
+        c.insert(table[j][i]);
+      }
+      else
+      {
+        cout << "Sudoku table incorrect: duplicate items in the same row or column" << endl;
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
