@@ -9,6 +9,7 @@ using namespace std;
 //prototypes
 bool checkTable(string n);
 bool checkRC(string n);
+bool sumNonets(string n, int sum);
 
 int main(int argc, char* argv[])
 {
@@ -121,3 +122,37 @@ bool checkRC(string n)
   return true;
 }
 
+bool sumNonets(string n, int sum)
+{
+  ifstream nfile(n);
+  
+  if(nfile.fail())
+    return false;
+
+  int count = 0;
+  int sum1 = 0;
+  int sum2 = 0;
+  int sum3 = 0;
+
+  while(!nfile.fail())
+  {
+    string line;
+    getline(nfile, line);
+
+    if(nfile.fail())
+      break;
+    
+   if(count != 0 && count%3 ==0)
+   {
+     sum1 = 0;
+     sum2 = 0;
+     sum3 = 0;
+   }
+  }
+
+
+
+
+
+
+}
