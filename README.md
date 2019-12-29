@@ -1,13 +1,17 @@
-Welcome to Sudoko, a lightweight Sudoku puzzle verifier.
-  -parses and verifies a textfile with a "completed" sudoku table.
-  -splits 9x9 table into 3, 3x3 tables to check if #'s are unique.
+## Welcome to Sudoko, a lightweight Sudoku puzzle verifier
+  -parses and verifies if a textfile contains a "completed" sudoku table.  
+  -checks if each row and column contain unique #'s.  
+  -checks if each nonet (one of the 9 3x3 tables) contain unique #'s.
+    
+![rules](https://raw.githubusercontent.com/j-hertzog/sudoko/master/img/sudoku_rules.jpg)
+
 
   To run this program: 
     -execute main with the text file of your choice
 
     ./main example_1.txt
 
-  Example List:
+##  Included Examples:
     example_1.txt
       -complete and correct sudoku table 
 
