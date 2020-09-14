@@ -1,4 +1,4 @@
-## Welcome to Sudoko, a lightweight Sudoku puzzle verifier
+## Welcome to Sudoko, a lightweight Sudoku puzzle board verification tool
   -parses and verifies if a textfile contains a "completed" sudoku table.  
   -checks if each row and column contain unique #'s.  
   -checks if each nonet (one of the 9 3x3 tables) contain unique #'s.
