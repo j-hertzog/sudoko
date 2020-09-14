@@ -3,7 +3,7 @@
   -checks if each row and column contain unique #'s.  
   -checks if each nonet (one of the 9 3x3 tables) contain unique #'s.
     
-![rules](https://raw.githubusercontent.com/j-hertzog/sudoko/master/img/sudoku_rules.jpg)
+![rules](https://raw.githubusercontent.com/j-hertzog/sudoko/master/img/sudoku_rules.png)
 
 
   To run this program: 
